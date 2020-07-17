@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Chicken Nerf",
-  "description": "Prevents random chicken egg laying. Instead, breeding chickens produce an egg. ",
+  "description": "Prevents random chicken egg laying. Instead, breeding chickens produces eggs. ",
   "authors": [
     "supersaiyansubtlety"
   ],
