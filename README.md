@@ -21,5 +21,6 @@ These are the settings with their default values:
   "maxLayedEggs": 3,
   "eggSuccessChance": 0.3333
 ```
+The default settings will result in about one baby chicken each time you breed two chickens. 
 
 ![Requires the Fabric API](https://i.imgur.com/Ol1Tcf8.png)
