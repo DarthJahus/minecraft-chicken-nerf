@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.chicken_nerf.title": "Chicken Nerf Configuration",
+
+  "text.autoconfig.chicken_nerf.option.minLayedEggs": "Minimum eggs chickens will lay",
+  "text.autoconfig.chicken_nerf.option.maxLayedEggs": "Maximum eggs chickens will lay",
+  "text.autoconfig.chicken_nerf.option.eggSuccessChance": "Chance of baby chicken from egg"
+}

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.sssubtlety.chicken_nerf.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "ChickenEntityBreedToLayEggsMixin",
+    "ChickenEntityNoRandomEggsMixin",
+    "EggEntityChickenChanceMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

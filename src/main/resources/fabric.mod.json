@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "chicken_nerf",
+  "version": "${version}",
+
+  "name": "Chicken Nerf",
+  "description": "Prevents random chicken egg laying. Instead, breeding chickens produce an egg. ",
+  "authors": [
+    "supersaiyansubtlety"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/chicken-nerf",
+    "sources": "https://gitlab.com/supersaiyansubtlety/chicken_nerf"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/chicken_nerf/chicken_nerf_icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.sssubtlety.chicken_nerf.ChickenNerfInit"
+    ],
+    "modmenu": [
+      "net.sssubtlety.chicken_nerf.ChickenNerfModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "chicken_nerf.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.8.9",
+    "minecraft": "1.16.1",
+    "fabric": "0.14.1"
+  }
+}
