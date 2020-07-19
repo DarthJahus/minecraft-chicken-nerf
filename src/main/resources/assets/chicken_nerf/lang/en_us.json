@@ -1,7 +1,10 @@
 {
   "text.autoconfig.chicken_nerf.title": "Chicken Nerf Configuration",
 
-  "text.autoconfig.chicken_nerf.option.minLayedEggs": "Minimum eggs chickens will lay",
-  "text.autoconfig.chicken_nerf.option.maxLayedEggs": "Maximum eggs chickens will lay",
-  "text.autoconfig.chicken_nerf.option.eggSuccessChance": "Chance of baby chicken from egg"
+  "text.autoconfig.chicken_nerf.option.minLayedEggs": "Minimum eggs chickens lay",
+  "text.autoconfig.chicken_nerf.option.minLayedEggs.@Tooltip": "All changes require a restart",
+  "text.autoconfig.chicken_nerf.option.maxLayedEggs": "Maximum eggs chickens lay",
+  "text.autoconfig.chicken_nerf.option.maxLayedEggs.@Tooltip": "All changes require a restart",
+  "text.autoconfig.chicken_nerf.option.eggSuccessChance": "Chance egg makes chicken",
+  "text.autoconfig.chicken_nerf.option.eggSuccessChance.@Tooltip": "All changes require a restart"
 }

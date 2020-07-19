@@ -11,8 +11,15 @@ public class ChickenNerfConfig implements ConfigData {
     @ConfigEntry.Gui.Excluded
     protected static final Logger LOGGER = LogManager.getLogger();
 
+    @ConfigEntry.Gui.Tooltip()
+    @ConfigEntry.BoundedDiscrete(max = 10)
     int minLayedEggs = 1;
+
+    @ConfigEntry.Gui.Tooltip()
+    @ConfigEntry.BoundedDiscrete(max = 10)
     int maxLayedEggs = 3;
+
+    @ConfigEntry.Gui.Tooltip()
     double eggSuccessChance = 0.3333;
 
     public int getMinLayedEggs() {
@@ -32,11 +39,17 @@ public class ChickenNerfConfig implements ConfigData {
         if(minLayedEggs < 0) {
             LOGGER.warn("ChickenNerfConfig found negative minLayedEggs. Defaulting to 0. ");
             minLayedEggs = 0;
+        } else if (minLayedEggs > 10) {
+            LOGGER.warn("ChickenNerfConfig found minLayedEggs > 10. Defaulting to 10. ");
+            minLayedEggs = 10;
         }
 
         if (maxLayedEggs < 0) {
             LOGGER.warn("ChickenNerfConfig found negative maxLayedEggs. Defaulting to 0. ");
             maxLayedEggs = 0;
+        } else if (maxLayedEggs > 10) {
+            LOGGER.warn("ChickenNerfConfig found maxLayedEggs > 10. Defaulting to 10. ");
+            maxLayedEggs = 10;
         }
 
         if (minLayedEggs > maxLayedEggs) {
