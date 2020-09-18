@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.math.MathHelper;
@@ -37,14 +38,14 @@ public abstract class ChickenEntityBreedToLayEggsMixin extends AnimalEntity {
 //	}
 
 	@Override
-	public void breed(World world, AnimalEntity other) {
+	public void breed(ServerWorld serverWorld, AnimalEntity other) {
 		ServerPlayerEntity serverPlayerEntity = this.getLovingPlayer();
 		if (serverPlayerEntity == null && other.getLovingPlayer() != null) {
 			serverPlayerEntity = other.getLovingPlayer();
 		}
 
 		if (serverPlayerEntity != null) {
-			PassiveEntity passiveEntity = this.createChild(other);
+			PassiveEntity passiveEntity = this.createChild(serverWorld, other);
 			if (passiveEntity != null) {
 				serverPlayerEntity.incrementStat(Stats.ANIMALS_BRED);
 				Criteria.BRED_ANIMALS.trigger(serverPlayerEntity, this, other, passiveEntity);

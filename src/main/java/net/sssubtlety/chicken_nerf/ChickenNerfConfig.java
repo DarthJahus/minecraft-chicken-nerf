@@ -20,7 +20,10 @@ public class ChickenNerfConfig implements ConfigData {
     int maxLayedEggs = 3;
 
     @ConfigEntry.Gui.Tooltip()
-    double eggSuccessChance = 0.3333;
+    double averageChickensFromEgg = 1.2;
+
+    @ConfigEntry.Gui.Excluded
+    private double eggSuccessChance = 1 - 1/averageChickensFromEgg;
 
     public int getMinLayedEggs() {
         return minLayedEggs;
@@ -59,14 +62,14 @@ public class ChickenNerfConfig implements ConfigData {
             maxLayedEggs = temp;
         }
 
-        if (eggSuccessChance <= 0) {
-            LOGGER.warn("ChickenNerfConfig found eggSuccessChance <= 0. Defaulting to 0.01 ");
-            eggSuccessChance = 0.01;
+        if (averageChickensFromEgg <= 0) {
+            LOGGER.warn("ChickenNerfConfig found averageChickensFromEgg <= 0. Defaulting to 0.01. ");
+            averageChickensFromEgg = 0.01;
         }
 
-        if (eggSuccessChance >= 1) {
-            LOGGER.warn("ChickenNerfConfig found eggSuccessChance >= 1. Defaulting to 0.9 ");
-            eggSuccessChance = 0.9;
+        if (averageChickensFromEgg > 100) {
+            LOGGER.warn("ChickenNerfConfig found averageChickensFromEgg > 100. Defaulting to 100. ");
+            averageChickensFromEgg = 100;
         }
     }
 
