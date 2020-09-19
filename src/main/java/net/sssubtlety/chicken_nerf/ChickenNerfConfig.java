@@ -22,9 +22,6 @@ public class ChickenNerfConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip()
     double averageChickensFromEgg = 1.2;
 
-    @ConfigEntry.Gui.Excluded
-    private double eggSuccessChance = 1 - 1/averageChickensFromEgg;
-
     public int getMinLayedEggs() {
         return minLayedEggs;
     }
@@ -34,7 +31,7 @@ public class ChickenNerfConfig implements ConfigData {
     }
 
     public double getEggSuccessChance() {
-        return eggSuccessChance;
+        return averageChickensFromEgg / (averageChickensFromEgg + 1);
     }
 
     @Override
@@ -72,5 +69,4 @@ public class ChickenNerfConfig implements ConfigData {
             averageChickensFromEgg = 100;
         }
     }
-
 }

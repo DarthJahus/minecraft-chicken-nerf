@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "${maven_group}.${mod_id}.${init_class}"
+    ],
+    "modmenu": [
+      "${maven_group}.${mod_id}.ChickenNerfModMenuIntegration"
     ]
   },
   "mixins": [
