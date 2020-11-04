@@ -13,21 +13,21 @@ public class ChickenNerfConfig implements ConfigData {
 
     @ConfigEntry.Gui.Tooltip()
     @ConfigEntry.BoundedDiscrete(max = 10)
-    int minLayedEggs = 1;
+    int minLaidEggs = 1;
 
     @ConfigEntry.Gui.Tooltip()
     @ConfigEntry.BoundedDiscrete(max = 10)
-    int maxLayedEggs = 3;
+    int maxLaidEggs = 3;
 
     @ConfigEntry.Gui.Tooltip()
-    double averageChickensFromEgg = 1.2;
+    double averageChickensFromEgg = 0.6;
 
-    public int getMinLayedEggs() {
-        return minLayedEggs;
+    public int getMinLaidEggs() {
+        return minLaidEggs;
     }
 
-    public int getMaxLayedEggs() {
-        return maxLayedEggs;
+    public int getMaxLaidEggs() {
+        return maxLaidEggs;
     }
 
     public double getEggSuccessChance() {
@@ -36,27 +36,27 @@ public class ChickenNerfConfig implements ConfigData {
 
     @Override
     public void validatePostLoad() {
-        if(minLayedEggs < 0) {
-            LOGGER.warn("ChickenNerfConfig found negative minLayedEggs. Defaulting to 0. ");
-            minLayedEggs = 0;
-        } else if (minLayedEggs > 10) {
-            LOGGER.warn("ChickenNerfConfig found minLayedEggs > 10. Defaulting to 10. ");
-            minLayedEggs = 10;
+        if(minLaidEggs < 0) {
+            LOGGER.warn("ChickenNerfConfig found negative minLaidEggs. Defaulting to 0. ");
+            minLaidEggs = 0;
+        } else if (minLaidEggs > 10) {
+            LOGGER.warn("ChickenNerfConfig found minLaidEggs > 10. Defaulting to 10. ");
+            minLaidEggs = 10;
         }
 
-        if (maxLayedEggs < 0) {
-            LOGGER.warn("ChickenNerfConfig found negative maxLayedEggs. Defaulting to 0. ");
-            maxLayedEggs = 0;
-        } else if (maxLayedEggs > 10) {
-            LOGGER.warn("ChickenNerfConfig found maxLayedEggs > 10. Defaulting to 10. ");
-            maxLayedEggs = 10;
+        if (maxLaidEggs < 0) {
+            LOGGER.warn("ChickenNerfConfig found negative maxLaidEggs. Defaulting to 0. ");
+            maxLaidEggs = 0;
+        } else if (maxLaidEggs > 10) {
+            LOGGER.warn("ChickenNerfConfig found maxLaidEggs > 10. Defaulting to 10. ");
+            maxLaidEggs = 10;
         }
 
-        if (minLayedEggs > maxLayedEggs) {
-            LOGGER.warn("ChickenNerfConfig found minLayedEggs > maxLayedEggs. Swapping. ");
-            int temp = minLayedEggs;
-            minLayedEggs = maxLayedEggs;
-            maxLayedEggs = temp;
+        if (minLaidEggs > maxLaidEggs) {
+            LOGGER.warn("ChickenNerfConfig found minLaidEggs > maxLaidEggs. Swapping. ");
+            int temp = minLaidEggs;
+            minLaidEggs = maxLaidEggs;
+            maxLaidEggs = temp;
         }
 
         if (averageChickensFromEgg <= 0) {

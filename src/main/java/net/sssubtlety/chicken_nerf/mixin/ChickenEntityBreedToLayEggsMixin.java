@@ -1,7 +1,6 @@
 package net.sssubtlety.chicken_nerf.mixin;
 
 import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -16,10 +15,7 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 import static net.sssubtlety.chicken_nerf.ChickenNerfInit.getCONFIG;
 
@@ -54,7 +50,7 @@ public abstract class ChickenEntityBreedToLayEggsMixin extends AnimalEntity {
 
 		this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 //		this.dropItem(Items.EGG);
-		ItemStack eggStack = new ItemStack(Items.EGG, MathHelper.nextInt(random, getCONFIG().getMinLayedEggs(), getCONFIG().getMaxLayedEggs()));
+		ItemStack eggStack = new ItemStack(Items.EGG, MathHelper.nextInt(random, getCONFIG().getMinLaidEggs(), getCONFIG().getMaxLaidEggs()));
 		this.dropStack(eggStack);
 
 		this.setBreedingAge(6000);
