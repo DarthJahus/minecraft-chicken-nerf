@@ -24,3 +24,7 @@ These are the settings with their default values:
 The default settings will result in about one baby chicken each time you breed two chickens. 
 
 ![Requires the Fabric API](https://i.imgur.com/Ol1Tcf8.png)
+
+This mod is only for Fabric and I won't be porting it to Forge. The license is [MIT](https://will-lucic.mit-license.org/), however, so anyone else is free to port it.
+
+I'd appreciate links back to this page if you port or otherwise modify this project, but links aren't required.
