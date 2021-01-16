@@ -5,6 +5,7 @@ import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 
 public class ChickenNerfInit implements ModInitializer {
+	public static String MOD_ID = "chicken_nerf";
 	private static ChickenNerfConfig CONFIG;
 	@Override
 	public void onInitialize() {
