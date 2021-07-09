@@ -3,9 +3,6 @@ buildscript {
 		jcenter()
 		mavenCentral()
 	}
-	dependencies {
-		classpath "com.github.yuchi:npm-semver:1.0.0"
-	}
 }
 
 plugins {
@@ -18,11 +15,19 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
+project.ext {
+	minecraft_version_list = project.minecraft_versions.split(",")
+	min_minecraft_version = project.ext.minecraft_version_list[0]
+	minecraft_version = project.ext.minecraft_version_list[project.ext.minecraft_version_list.size() - 1]
+}
+
 archivesBaseName = project.archives_base_name
-version = project.mod_version + "+MC" +
-		((project.min_minecraft_version != project.minecraft_version ?
-				project.min_minecraft_version + "-" : "") +
-				project.minecraft_version)
+String mc_ver_suffix = "+MC" + ((project.ext.minecraft_version_list.size() > 1 ?
+		project.ext.min_minecraft_version + "-" : "") +
+		project.ext.minecraft_version)
+version = project.mod_version + mc_ver_suffix
+
+
 
 group = project.maven_group
 
@@ -39,7 +44,8 @@ repositories {
 
 	maven {
 		name = "Terraformers"
-		url = "https://maven.terraformersmc.com/releases/"
+//		url = "https://maven.terraformersmc.com/releases/"
+		url = "https://maven.kotlindiscord.com/repository/terraformers/"
 	}
 
 	maven {
@@ -55,7 +61,7 @@ repositories {
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:" + project.minecraft_version
+	minecraft "com.mojang:minecraft:" + project.ext.minecraft_version
 	mappings "net.fabricmc:yarn:" + project.yarn_mappings
 	modImplementation "net.fabricmc:fabric-loader:" + project.loader_version
 
@@ -82,7 +88,7 @@ processResources {
 		expand ([
 				"version": project.version,
 
-				"minecraft_version": project.minecraft_version,
+				"minecraft_version": project.ext.minecraft_version,
 				"min_loader_version": project.min_loader_version,
 
 				"mod_id": project.mod_id,
@@ -159,10 +165,10 @@ def readRecentChanges() {
 					if (!lineMatcher.group(1).startsWith(project.mod_version, 2))
 						throw new Exception("Version on first line of changelog doesn't match mod_version. ")
 					def trimmedLine = lineMatcher.group(2)
-					if (!trimmedLine.isEmpty())changes += trimmedLine + "\n"
+					if (!trimmedLine.isEmpty())changes += trimmedLine + "\n\n"
 				} else throw new Exception("First line of changelog is not new version line. ")
 			} else if (!line.matches(newVersionLineRegex)) {
-				changes += line + "\n"
+				changes += line + "\n\n"
 			} else break
 		}
 	}
@@ -177,13 +183,16 @@ curseforge {
 		project {
 			id = project.curseforge_id
 			releaseType = mod_version.endsWith("a") ? "alpha" : mod_version.endsWith("b") ? "beta" : "release"
-			project.minecraft_versions.split(",").each { String game_version -> addGameVersion game_version }
+			project.ext.minecraft_version_list.each { String game_version -> addGameVersion game_version }
 			addGameVersion "Fabric"
 
-			changelogType = "html"
+			changelogType = "markdown"
 			changelog = readRecentChanges()
 			relations {
 				requiredDependency "fabric-api"
+				requiredDependency "cloth-config"
+				requiredDependency "auto-config-updated-api"
+				optionalDependency "modmenu"
 			}
 			mainArtifact(remapJar.archivePath) { }
 

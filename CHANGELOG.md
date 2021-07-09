@@ -1,3 +1,4 @@
+- 1.0.7 (9 Jul. 2021): Marked as compatible with 1.17.1
 - 1.0.6 (13 Jun. 2021): 
   - Updated for 1.17
   - No longer bundles Cloth Config and Auto Config (updated), you must install these dependencies separately
