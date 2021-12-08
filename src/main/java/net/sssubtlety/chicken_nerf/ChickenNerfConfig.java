@@ -1,71 +1,74 @@
 package net.sssubtlety.chicken_nerf;
 
+import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
-@Config(name = "chicken_nerf")
+import static net.sssubtlety.chicken_nerf.ChickenNerf.NAMESPACE;
+
+@Config(name = NAMESPACE)
 public class ChickenNerfConfig implements ConfigData {
-    @ConfigEntry.Gui.Excluded
-    protected static final Logger LOGGER = LogManager.getLogger();
+    private static final ChickenNerfConfig INSTANCE = AutoConfig.register(ChickenNerfConfig.class, GsonConfigSerializer::new).getConfig();
+
+    public static void init() { }
+
+    public static int getMinLaidEggs() {
+        return INSTANCE.minLaidEggs;
+    }
+
+    public static int getMaxLaidEggs() {
+        return INSTANCE.maxLaidEggs;
+    }
+
+    public static double getEggSuccessChance() {
+        return INSTANCE.averageChickensFromEgg / (INSTANCE.averageChickensFromEgg + 1);
+    }
 
     @ConfigEntry.Gui.Tooltip()
     @ConfigEntry.BoundedDiscrete(max = 10)
-    int minLaidEggs = 1;
+    private int minLaidEggs = 1;
 
     @ConfigEntry.Gui.Tooltip()
     @ConfigEntry.BoundedDiscrete(max = 10)
-    int maxLaidEggs = 3;
+    private int maxLaidEggs = 3;
 
     @ConfigEntry.Gui.Tooltip()
-    double averageChickensFromEgg = 0.6;
-
-    public int getMinLaidEggs() {
-        return minLaidEggs;
-    }
-
-    public int getMaxLaidEggs() {
-        return maxLaidEggs;
-    }
-
-    public double getEggSuccessChance() {
-        return averageChickensFromEgg / (averageChickensFromEgg + 1);
-    }
+    private double averageChickensFromEgg = 0.6;
 
     @Override
     public void validatePostLoad() {
         if(minLaidEggs < 0) {
-            LOGGER.warn("ChickenNerfConfig found negative minLaidEggs. Defaulting to 0. ");
+            ChickenNerf.LOGGER.warn("ChickenNerfConfig found negative minLaidEggs. Defaulting to 0. ");
             minLaidEggs = 0;
         } else if (minLaidEggs > 10) {
-            LOGGER.warn("ChickenNerfConfig found minLaidEggs > 10. Defaulting to 10. ");
+            ChickenNerf.LOGGER.warn("ChickenNerfConfig found minLaidEggs > 10. Defaulting to 10. ");
             minLaidEggs = 10;
         }
 
         if (maxLaidEggs < 0) {
-            LOGGER.warn("ChickenNerfConfig found negative maxLaidEggs. Defaulting to 0. ");
+            ChickenNerf.LOGGER.warn("ChickenNerfConfig found negative maxLaidEggs. Defaulting to 0. ");
             maxLaidEggs = 0;
         } else if (maxLaidEggs > 10) {
-            LOGGER.warn("ChickenNerfConfig found maxLaidEggs > 10. Defaulting to 10. ");
+            ChickenNerf.LOGGER.warn("ChickenNerfConfig found maxLaidEggs > 10. Defaulting to 10. ");
             maxLaidEggs = 10;
         }
 
         if (minLaidEggs > maxLaidEggs) {
-            LOGGER.warn("ChickenNerfConfig found minLaidEggs > maxLaidEggs. Swapping. ");
+            ChickenNerf.LOGGER.warn("ChickenNerfConfig found minLaidEggs > maxLaidEggs. Swapping. ");
             int temp = minLaidEggs;
             minLaidEggs = maxLaidEggs;
             maxLaidEggs = temp;
         }
 
         if (averageChickensFromEgg <= 0) {
-            LOGGER.warn("ChickenNerfConfig found averageChickensFromEgg <= 0. Defaulting to 0.01. ");
+            ChickenNerf.LOGGER.warn("ChickenNerfConfig found averageChickensFromEgg <= 0. Defaulting to 0.01. ");
             averageChickensFromEgg = 0.01;
         }
 
         if (averageChickensFromEgg > 100) {
-            LOGGER.warn("ChickenNerfConfig found averageChickensFromEgg > 100. Defaulting to 100. ");
+            ChickenNerf.LOGGER.warn("ChickenNerfConfig found averageChickensFromEgg > 100. Defaulting to 100. ");
             averageChickensFromEgg = 100;
         }
     }
