@@ -6,5 +6,6 @@
   "text.autoconfig.chicken_nerf.option.maxLayedEggs": "Maximum eggs chickens lay",
   "text.autoconfig.chicken_nerf.option.maxLayedEggs.@Tooltip": "All changes require a restart",
   "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "Average chickens from one egg",
-  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg.@Tooltip": "All changes require a restart"
+  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg.@Tooltip": "All changes require a restart",
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Enable translation fetching"
 }
