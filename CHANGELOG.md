@@ -1,5 +1,6 @@
-- 1.0.8 (8 Dec. 2021): 
-  
+- 1.0.9 (12 Dec. 2021): Marked as compatible with 1.18.1
+- 1.0.8 (8 Dec. 2021):
+
   Marked as compatible with 1.18.
   
   AutoConfig is no longer required, as it's built in to cloth config.
