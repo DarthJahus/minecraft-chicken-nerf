@@ -30,15 +30,12 @@ public class ChickenNerfConfig implements ConfigData {
         return INSTANCE.enableTranslationFetching;
     }
 
-    @ConfigEntry.Gui.Tooltip()
     @ConfigEntry.BoundedDiscrete(max = 10)
     private int minLaidEggs = 1;
 
-    @ConfigEntry.Gui.Tooltip()
     @ConfigEntry.BoundedDiscrete(max = 10)
     private int maxLaidEggs = 3;
 
-    @ConfigEntry.Gui.Tooltip()
     private double averageChickensFromEgg = 0.6;
 
     private boolean enableTranslationFetching = true;

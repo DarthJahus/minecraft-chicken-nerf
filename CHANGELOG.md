@@ -1,3 +1,4 @@
+- 1.0.11 (27 Dec. 2021): Removed 'All changes require a restart' tooltips, because they don't.
 - 1.0.10 (13 Dec. 2021): Added 'Enabled translation fetching' option
 - 1.0.9 (12 Dec. 2021): Marked as compatible with 1.18.1
 - 1.0.8 (8 Dec. 2021):
