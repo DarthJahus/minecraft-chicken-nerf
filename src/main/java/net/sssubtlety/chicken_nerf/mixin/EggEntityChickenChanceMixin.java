@@ -4,8 +4,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.projectile.thrown.EggEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
-import net.sssubtlety.chicken_nerf.ChickenNerfConfig;
+import net.sssubtlety.chicken_nerf.ChickenNerf;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,14 +22,16 @@ public abstract class EggEntityChickenChanceMixin extends ThrownItemEntity {
     @Redirect(method = "onCollision", at = @At(value = "FIELD", opcode = Opcodes.GETFIELD, target = "Lnet/minecraft/world/World;isClient:Z"))
     boolean spawnChickensAndFakeClient(World world) {
 
-        while(random.nextFloat() < ChickenNerfConfig.getEggSuccessChance()) {
-            ChickenEntity chickenEntity = EntityType.CHICKEN.create(this.world);
-            if(chickenEntity != null) {
-                chickenEntity.setBreedingAge(-24000);
-                chickenEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0F);
-                this.world.spawnEntity(chickenEntity);
-            }
-        }
+//        while(random.nextFloat() < FeatureControl.getEggSuccessChance()) {
+//            ChickenEntity chickenEntity = EntityType.CHICKEN.create(this.world);
+//            if(chickenEntity != null) {
+//                chickenEntity.setBreedingAge(-24000);
+//                chickenEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0F);
+//                this.world.spawnEntity(chickenEntity);
+//            }
+//        }
+
+        ChickenNerf.spawnEntities(EntityType.CHICKEN, getX(), getY(), getZ(), getYaw(), world, chicken -> chicken.setBreedingAge(-24000));
 
         this.world.sendEntityStatus(this, (byte)3);
         this.discard();

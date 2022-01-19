@@ -2,43 +2,23 @@ package net.sssubtlety.chicken_nerf;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
 import static net.sssubtlety.chicken_nerf.ChickenNerf.NAMESPACE;
 
-@Config(name = NAMESPACE)
-public class ChickenNerfConfig implements ConfigData {
-    private static final ChickenNerfConfig INSTANCE = AutoConfig.register(ChickenNerfConfig.class, GsonConfigSerializer::new).getConfig();
-
-    public static void init() { }
-
-    public static int getMinLaidEggs() {
-        return INSTANCE.minLaidEggs;
-    }
-
-    public static int getMaxLaidEggs() {
-        return INSTANCE.maxLaidEggs;
-    }
-
-    public static double getEggSuccessChance() {
-        return INSTANCE.averageChickensFromEgg / (INSTANCE.averageChickensFromEgg + 1);
-    }
-
-    public static boolean isTranslationFetchingEnabled() {
-        return INSTANCE.enableTranslationFetching;
-    }
+@me.shedaniel.autoconfig.annotation.Config(name = NAMESPACE)
+public class Config implements ConfigData {
+    @ConfigEntry.BoundedDiscrete(max = 10)
+    public int minLaidEggs = 1;
 
     @ConfigEntry.BoundedDiscrete(max = 10)
-    private int minLaidEggs = 1;
+    public int maxLaidEggs = 3;
 
-    @ConfigEntry.BoundedDiscrete(max = 10)
-    private int maxLaidEggs = 3;
+    public double averageChickensFromEgg = 0.6;
 
-    private double averageChickensFromEgg = 0.6;
-
-    private boolean enableTranslationFetching = true;
+    @ConfigEntry.Gui.Tooltip
+    public boolean enableTranslationFetching = true;
 
     @Override
     public void validatePostLoad() {

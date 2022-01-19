@@ -15,22 +15,17 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.sssubtlety.chicken_nerf.ChickenNerfConfig;
+import net.sssubtlety.chicken_nerf.FeatureControl;
 import org.spongepowered.asm.mixin.Mixin;
+
+import static net.sssubtlety.chicken_nerf.ChickenNerf.getLayedEggStack;
 
 @Mixin(ChickenEntity.class)
 public abstract class ChickenEntityBreedToLayEggsMixin extends AnimalEntity {
 	protected ChickenEntityBreedToLayEggsMixin(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
-		throw new IllegalStateException("chicken_nerf: ChickenEntityBreedToLayEggsMixin's dummy constructor called. ");
+		throw new IllegalStateException("ChickenEntityBreedToLayEggsMixin's dummy constructor called!");
 	}
-
-//	@Redirect(method = "createChild", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/EntityType;create(Lnet/minecraft/world/World;)Lnet/minecraft/entity/Entity;"))
-//	public Entity createChild(EntityType entityType, World world) {
-//		this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-//		this.dropItem(Items.EGG);
-//		return null;
-//	}
 
 	@Override
 	public void breed(ServerWorld serverWorld, AnimalEntity other) {
@@ -48,8 +43,7 @@ public abstract class ChickenEntityBreedToLayEggsMixin extends AnimalEntity {
 		}
 
 		this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-//		this.dropItem(Items.EGG);
-		ItemStack eggStack = new ItemStack(Items.EGG, MathHelper.nextInt(random, ChickenNerfConfig.getMinLaidEggs(), ChickenNerfConfig.getMaxLaidEggs()));
+		ItemStack eggStack = getLayedEggStack(Items.EGG, random);
 		this.dropStack(eggStack);
 
 		this.setBreedingAge(6000);

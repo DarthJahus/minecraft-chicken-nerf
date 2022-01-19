@@ -4,5 +4,10 @@
   "text.autoconfig.chicken_nerf.option.minLaidEggs": "Minimum eggs chickens lay",
   "text.autoconfig.chicken_nerf.option.maxLaidEggs": "Maximum eggs chickens lay",
   "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "Average chickens from one egg",
-  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Enable translation fetching"
+
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Download translation updates",
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching.@Tooltip": "Download translations from Crowdin when the game launches",
+
+  "text.chicken_nerf.no_config_screen.title": "Chicken Nerf Config Unavailable",
+  "text.chicken_nerf.no_config_screen.message": "Install Cloth Config to enable configuration."
 }
