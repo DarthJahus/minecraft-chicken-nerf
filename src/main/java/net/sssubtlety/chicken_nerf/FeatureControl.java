@@ -25,6 +25,7 @@ import java.util.Random;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import static net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SERVER_STARTING;
 import static net.sssubtlety.chicken_nerf.ChickenNerf.getNumEntitiesToSpawn;
 
 public class FeatureControl {
@@ -58,12 +59,15 @@ public class FeatureControl {
                     // modify the number of baby entities from a BAP egg
                     ModEventBus.EggThrowSpawnCountEvent.subscribe(event ->
                             event.setSpawnCount(getNumEntitiesToSpawn(event.getEntity().world.random)));
-                    // map BAP egg-layers to their eggs
-                    mapAnimalToEggSupplier(EntityGoose.class, (random) ->
-                            random.nextInt(128) == 0 ? ModItems.GOLDEN_GOOSE_EGG.get() : ModItems.GOOSE_EGG.get());
-                    mapAnimalToEgg(EntityPheasant.class, ModItems.PHEASANT_EGG.get());
-                    mapAnimalToEgg(EntityTurkey.class, ModItems.TURKEY_EGG.get());
 
+                    SERVER_STARTING.register(server -> {
+                        // map BAP egg-layers to their eggs
+                        //  in SERVER_STARTING so Items aren't accessed before they finish registering
+                        mapAnimalToEggSupplier(EntityGoose.class, (random) ->
+                                random.nextInt(128) == 0 ? ModItems.GOLDEN_GOOSE_EGG.get() : ModItems.GOOSE_EGG.get());
+                        mapAnimalToEgg(EntityPheasant.class, ModItems.PHEASANT_EGG.get());
+                        mapAnimalToEgg(EntityTurkey.class, ModItems.TURKEY_EGG.get());
+                    });
                 }
             } catch (VersionParsingException e) {
                 e.printStackTrace();

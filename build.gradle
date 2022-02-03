@@ -112,13 +112,11 @@ dependencies {
 	bundledMod("de.guntram.mcmod:crowdin-translate:$project.crowdin_translate_version")
 
 	// Mod integrations
-	modImplementation("dev.itsmeow.betteranimalsplus:betteranimalsplus-fabric:$project.better_animals_plus_version") {
-		transitive = false
-	}
+	modCompileOnly("dev.itsmeow.betteranimalsplus:betteranimalsplus-fabric:$project.better_animals_plus_version") { transitive = false }
+//	modRuntimeOnly("dev.itsmeow.betteranimalsplus:betteranimalsplus-fabric:$project.better_animals_plus_version") { transitive = false }
 
-	modImplementation("dev.architectury:architectury-fabric:$project.architectury_version") {
-		transitive = false
-	}
+	modCompileOnly("dev.architectury:architectury-fabric:$project.architectury_version") { transitive = false }
+//	modRuntimeOnly("dev.architectury:architectury-fabric:$project.architectury_version") { transitive = false }
 
 	// speed up launching in dev
 	devRuntime("com.github.astei:lazydfu:$project.lazy_dfu_version")
