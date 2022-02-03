@@ -12,10 +12,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.sssubtlety.chicken_nerf.FeatureControl;
 import org.spongepowered.asm.mixin.Mixin;
 
 import static net.sssubtlety.chicken_nerf.ChickenNerf.getLayedEggStack;

@@ -38,6 +38,10 @@ archivesBaseName = project.ext.archives_base_name
 group = project.maven_group
 
 repositories {
+	flatDir {
+		dir "downloaded_jars"
+	}
+
 	mavenCentral()
 	maven { url "https://server.bbkr.space/artifactory/libs-release" }
 
@@ -61,41 +65,67 @@ repositories {
 		content { includeGroup "net.oskarstrom" }
 	}
 
+	maven {
+		url = "https://maven.itsmeow.dev/"
+	}
+
 	// Broad mavens
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+		content { includeGroup "maven.modrinth" }
+	}
+
 	maven {
 		name = "CurseMaven"
 		url = "https://www.cursemaven.com"
+		//FORMAT: curse.maven:<descriptor>-<projectid>:<fileid>
 	}
 
-	//JITPACK MUST BE LAST!
+	// JITPACK MUST BE LAST
 	maven {
-		name "jitpack"
-		url "https://jitpack.io"
+		name = "JitPack"
+		url 'https://jitpack.io'
+		// FORMAT: com.github.<User>:<Repo>:<Tag/commit_hash>
+		// see https://jitpack.io/
 	}
 }
 
 dependencies {
-	minecraft("com.mojang:minecraft:${project.ext.minecraft_version}")
-	mappings("net.fabricmc:yarn:${project.yarn_mappings}")
-	modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+	implementation("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}") { transitive = false }
+	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}") { transitive = false }
+	include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}") { transitive = false }
+
+	minecraft("com.mojang:minecraft:$project.ext.minecraft_version")
+	mappings("net.fabricmc:yarn:$project.yarn_mappings")
+	modImplementation("net.fabricmc:fabric-loader:$project.loader_version")
 
 	// FAPI
-	modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
+	modImplementation("net.fabricmc.fabric-api:fabric-api:$project.fabric_api_version")
 
 	//Config library
-	optionalApi(false, "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}")
+	optionalApi(true, "me.shedaniel.cloth:cloth-config-fabric:$project.cloth_config_version")
 	//Config menu support
-	optionalMod(true, "com.terraformersmc:modmenu:${project.modmenu_version}")
+	optionalMod(true, "com.terraformersmc:modmenu:$project.modmenu_version")
 
 	// Translation fetching
-	bundledMod("de.guntram.mcmod:crowdin-translate:${project.crowdin_translate_version}")
+	bundledMod("de.guntram.mcmod:crowdin-translate:$project.crowdin_translate_version")
+
+	// Mod integrations
+	modImplementation("dev.itsmeow.betteranimalsplus:betteranimalsplus-fabric:$project.better_animals_plus_version") {
+		transitive = false
+	}
+
+	modImplementation("dev.architectury:architectury-fabric:$project.architectury_version") {
+		transitive = false
+	}
 
 	// speed up launching in dev
-	devRuntime("com.github.astei:lazydfu:${project.lazy_dfu_version}")
-	devRuntime("net.oskarstrom:DashLoader:${project.dashloader_version}")
+	devRuntime("com.github.astei:lazydfu:$project.lazy_dfu_version")
+	devRuntime("net.oskarstrom:DashLoader:$project.dashloader_version")
 
 	// remember window size+pos in dev
-	devRuntime("net.dblsaiko:winwonders:${project.winwonders_version}")
+	devRuntime("net.dblsaiko:winwonders:$project.winwonders_version")
 }
 
 def requiredMod_(String dep) {

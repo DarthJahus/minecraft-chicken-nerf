@@ -24,6 +24,9 @@
     "client": [
       "${maven_group}.${mod_id}.${ModId}\$ClientInit"
     ],
+    "preLaunch": [
+      "${maven_group}.${mod_id}.${ModId}\$PreLaunch"
+    ],
     "modmenu": [
       "${maven_group}.${mod_id}.ModMenuIntegration"
     ]
