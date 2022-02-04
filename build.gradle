@@ -113,10 +113,10 @@ dependencies {
 
 	// Mod integrations
 	modCompileOnly("dev.itsmeow.betteranimalsplus:betteranimalsplus-fabric:$project.better_animals_plus_version") { transitive = false }
-//	modRuntimeOnly("dev.itsmeow.betteranimalsplus:betteranimalsplus-fabric:$project.better_animals_plus_version") { transitive = false }
+	modRuntimeOnly("dev.itsmeow.betteranimalsplus:betteranimalsplus-fabric:$project.better_animals_plus_version") { transitive = false }
 
 	modCompileOnly("dev.architectury:architectury-fabric:$project.architectury_version") { transitive = false }
-//	modRuntimeOnly("dev.architectury:architectury-fabric:$project.architectury_version") { transitive = false }
+	modRuntimeOnly("dev.architectury:architectury-fabric:$project.architectury_version") { transitive = false }
 
 	// speed up launching in dev
 	devRuntime("com.github.astei:lazydfu:$project.lazy_dfu_version")
@@ -300,7 +300,7 @@ def readFileFirstLine(String fileName) {
 }
 
 def getRecentChanges(int versionsToRead) {
-	def newVersionLineRegex = "^- (\\d+\\.\\d+(?:\\.\\d+)?(?:-[\\d+a-z]+)?)" + "( \\(\\d{1,2} [A-Z][a-z]{2}\\.? 2021\\):)" + "(.*)"
+	def newVersionLineRegex = "^- (\\d+\\.\\d+(?:\\.\\d+)?(?:-[\\d+a-z]+)?)" + "( \\(\\d{1,2} [A-Z][a-z]{2}\\.? 20\\d\\d\\):)" + "(.*)"
 	Pattern newVersionLinePattern = Pattern.compile(newVersionLineRegex)
 
 	def changelogFile = file("CHANGELOG.md")

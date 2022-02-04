@@ -23,9 +23,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
-import static net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SERVER_STARTING;
 import static net.sssubtlety.chicken_nerf.ChickenNerf.getNumEntitiesToSpawn;
 
 public class FeatureControl {
@@ -60,14 +58,11 @@ public class FeatureControl {
                     ModEventBus.EggThrowSpawnCountEvent.subscribe(event ->
                             event.setSpawnCount(getNumEntitiesToSpawn(event.getEntity().world.random)));
 
-                    SERVER_STARTING.register(server -> {
-                        // map BAP egg-layers to their eggs
-                        //  in SERVER_STARTING so Items aren't accessed before they finish registering
-                        mapAnimalToEggSupplier(EntityGoose.class, (random) ->
-                                random.nextInt(128) == 0 ? ModItems.GOLDEN_GOOSE_EGG.get() : ModItems.GOOSE_EGG.get());
-                        mapAnimalToEgg(EntityPheasant.class, ModItems.PHEASANT_EGG.get());
-                        mapAnimalToEgg(EntityTurkey.class, ModItems.TURKEY_EGG.get());
-                    });
+                    // map BAP egg-layers to their eggs
+                    mapAnimalToEggFxn(EntityGoose.class, (random) -> random.nextInt(128) == 0 ?
+                            ModItems.GOLDEN_GOOSE_EGG.get() : ModItems.GOOSE_EGG.get());
+                    mapAnimalToEggFxn(EntityPheasant.class, (random) -> ModItems.PHEASANT_EGG.get());
+                    mapAnimalToEggFxn(EntityTurkey.class, (random) -> ModItems.TURKEY_EGG.get());
                 }
             } catch (VersionParsingException e) {
                 e.printStackTrace();
@@ -92,10 +87,10 @@ public class FeatureControl {
     }
 
     public static boolean mapAnimalToEgg(Class<? extends AnimalEntity> animalClass, Item eggItem) {
-        return mapAnimalToEggSupplier(animalClass, (random) -> eggItem);
+        return mapAnimalToEggFxn(animalClass, (random) -> eggItem);
     }
 
-    public static boolean mapAnimalToEggSupplier(Class<? extends AnimalEntity> animalClass, Function<Random, ItemConvertible> eggFxn) {
+    public static boolean mapAnimalToEggFxn(Class<? extends AnimalEntity> animalClass, Function<Random, ItemConvertible> eggFxn) {
         return ANIMAL2EGG_FXN_MAP.putIfAbsent(animalClass, eggFxn) == null;
     }
 
