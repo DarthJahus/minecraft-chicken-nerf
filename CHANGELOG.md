@@ -1,3 +1,4 @@
+- 1.0.13 (29 May 2022): Marked as compatible with 1.18.2
 - 1.0.12 (2 Feb. 2022): 
   
   - Added integration with [BetterAnimalsPlus](https://www.curseforge.com/minecraft/mc-mods/betteranimalsplus)!
