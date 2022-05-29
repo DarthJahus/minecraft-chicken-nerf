@@ -1,8 +1,8 @@
 - 1.0.12 (2 Feb. 2022): 
   
   - Added integration with [BetterAnimalsPlus](https://www.curseforge.com/minecraft/mc-mods/betteranimalsplus)!
-    
-    Thanks to [itsmeow](https://github.com/itsmeow) for making this possible by adding events to BAP!
+  - Geese, Pheasants and Turkeys are effected. 
+  - Thanks to [itsmeow](https://github.com/itsmeow) for making this possible by adding events to BAP!
   - Cloth Config is now optional.
 
 - 1.0.11 (27 Dec. 2021): Removed 'All changes require a restart' tooltips, because they don't.

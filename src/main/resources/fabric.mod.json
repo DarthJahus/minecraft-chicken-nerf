@@ -19,13 +19,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "${maven_group}.${mod_id}.${ModId}\$Init"
+      "${maven_group}.${mod_id}.Init"
     ],
     "client": [
-      "${maven_group}.${mod_id}.${ModId}\$ClientInit"
+      "${maven_group}.${mod_id}.ClientInit"
     ],
     "preLaunch": [
-      "${maven_group}.${mod_id}.${ModId}\$PreLaunch"
+      "${maven_group}.${mod_id}.PreLaunch"
     ],
     "modmenu": [
       "${maven_group}.${mod_id}.ModMenuIntegration"
@@ -36,8 +36,8 @@
   ],
 
   "depends": {
-    "fabricloader": ">=${min_loader_version}",
-    "fabric": ">=${min_fabric_api_version}",
+    "fabricloader": ">=${min_fabricloader_version}",
+    "fabric": ">=${min_fabric_version}",
     "minecraft": ">=${min_minecraft_version} <=${minecraft_version}"
   },
   "suggests": {

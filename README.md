@@ -27,6 +27,8 @@ Well, this mod can help you with that.
 Chickens will no longer randomly lay eggs. 
 Instead, when you breed two chicken (with seed like in vanilla), they will produce a random number of eggs. 
 
+You can see the mod showcased at [2:00 of this video](https://youtu.be/x0R2ubLZEVE?t=120) by [bstylia14](https://www.youtube.com/channel/UCnVYbd8Kzp442CjJrkWLUKQ/videos).
+
 This has several advantages:
 - it makes more sense
 - it makes chicken farms non-trivial
@@ -51,6 +53,19 @@ The default settings will result in about one baby chicken each time you breed t
 
 </details>
 
+<br/>
+
+<details>
+
+<summary>Mod Integrations</summary>
+Some entities from these mods will have their breeding behavior changed similarly to how Chicken Nerf affects chickens. 
+
+- [Better Animals Plus](https://www.curseforge.com/minecraft/mc-mods/betteranimalsplus), affected entities:
+  - Geese
+  - Pheasants
+  - Turkeys
+    
+</details>
 
 If you'd like to translate Chicken Nerf (there are only a few lines of text), follow [this link](https://crowdin.com/project/chicken-nerf/invite). New translations will be added once approved without the mod needing an update thanks to [CrowdinTranslate](https://github.com/gbl/CrowdinTranslate).
 
