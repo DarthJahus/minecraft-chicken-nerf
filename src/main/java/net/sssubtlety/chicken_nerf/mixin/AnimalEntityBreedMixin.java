@@ -35,7 +35,7 @@ public abstract class AnimalEntityBreedMixin extends PassiveEntity {
 	}
 
 	@WrapWithCondition(method = "breed", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnEntityAndPassengers(Lnet/minecraft/entity/Entity;)V"))
-	private boolean spawnEggsInsteadOfBabies(ServerWorld world, Entity entity) {
+	private boolean chicken_nerf$spawnEggsInsteadOfBabies(ServerWorld world, Entity entity) {
 		Item eggItem = getEggForAnimal(this.getClass(), this.random);
 		if (eggItem == null) return true;
 		else {

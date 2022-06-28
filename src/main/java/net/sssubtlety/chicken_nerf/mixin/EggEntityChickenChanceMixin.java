@@ -20,17 +20,7 @@ public abstract class EggEntityChickenChanceMixin extends ThrownItemEntity {
     }
 
     @Redirect(method = "onCollision", at = @At(value = "FIELD", opcode = Opcodes.GETFIELD, target = "Lnet/minecraft/world/World;isClient:Z"))
-    boolean spawnChickensAndFakeClient(World world) {
-
-//        while(random.nextFloat() < FeatureControl.getEggSuccessChance()) {
-//            ChickenEntity chickenEntity = EntityType.CHICKEN.create(this.world);
-//            if(chickenEntity != null) {
-//                chickenEntity.setBreedingAge(-24000);
-//                chickenEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0F);
-//                this.world.spawnEntity(chickenEntity);
-//            }
-//        }
-
+    boolean chicken_nerf$spawnChickensAndFakeClient(World world) {
         ChickenNerf.spawnEntities(EntityType.CHICKEN, getX(), getY(), getZ(), getYaw(), world, chicken -> chicken.setBreedingAge(-24000));
 
         this.world.sendEntityStatus(this, (byte)3);
