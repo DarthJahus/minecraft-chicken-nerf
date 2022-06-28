@@ -16,6 +16,7 @@ import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.util.random.RandomGenerator;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -28,7 +29,7 @@ import static net.sssubtlety.chicken_nerf.ChickenNerf.getNumEntitiesToSpawn;
 
 public class FeatureControl {
     private static final @Nullable Config CONFIG_INSTANCE;
-    private static final Map<Class<? extends AnimalEntity>, Function<Random, ItemConvertible>> ANIMAL2EGG_FXN_MAP = new HashMap<>();
+    private static final Map<Class<? extends AnimalEntity>, Function<RandomGenerator, ItemConvertible>> ANIMAL2EGG_FXN_MAP = new HashMap<>();
 
     static {
         mapAnimalToEgg(ChickenEntity.class, Items.EGG);
@@ -49,7 +50,7 @@ public class FeatureControl {
         final Optional<ModContainer> optBAPContainer = FabricLoader.getInstance().getModContainer("betteranimalsplus");
         if (optBAPContainer.isPresent()) {
             try {
-                if (VersionPredicate.parse(">=1.18.1-11.0.4").test(optBAPContainer.get().getMetadata().getVersion())) {
+                if (VersionPredicate.parse(">=1.19-11.0.6").test(optBAPContainer.get().getMetadata().getVersion())) {
                     // cancel BAP random egg laying
                     ModEventBus.LayEggTickEvent.subscribe(event -> event.setCanceled(true));
                     // ensure BAP eggs always try to spawn babies
@@ -81,8 +82,8 @@ public class FeatureControl {
 
     public static void init() { }
 
-    public static @Nullable Item getEggForAnimal(Class<?> animalClass, Random random) {
-        final Function<Random, ItemConvertible> eggFxn = ANIMAL2EGG_FXN_MAP.get(animalClass);
+    public static @Nullable Item getEggForAnimal(Class<?> animalClass, RandomGenerator random) {
+        final Function<RandomGenerator, ItemConvertible> eggFxn = ANIMAL2EGG_FXN_MAP.get(animalClass);
         return eggFxn == null ? null : eggFxn.apply(random).asItem();
     }
 
@@ -90,7 +91,7 @@ public class FeatureControl {
         return mapAnimalToEggFxn(animalClass, (random) -> eggItem);
     }
 
-    public static boolean mapAnimalToEggFxn(Class<? extends AnimalEntity> animalClass, Function<Random, ItemConvertible> eggFxn) {
+    public static boolean mapAnimalToEggFxn(Class<? extends AnimalEntity> animalClass, Function<RandomGenerator, ItemConvertible> eggFxn) {
         return ANIMAL2EGG_FXN_MAP.putIfAbsent(animalClass, eggFxn) == null;
     }
 

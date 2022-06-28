@@ -26,6 +26,11 @@ repositories {
 	maven {
 		url = "https://maven.itsmeow.dev/"
 	}
+
+	maven {
+		name = "Ladysnake Mods"
+		url = 'https://ladysnake.jfrog.io/artifactory/mods'
+	}
 }
 
 dependencies {
@@ -44,15 +49,13 @@ dependencies {
 	bundledMod "de.guntram.mcmod:crowdin-translate:$project.crowdin_translate_version"
 
 	// Mod integrations
-	modCompileOnly("dev.itsmeow.betteranimalsplus:betteranimalsplus-fabric:$project.better_animals_plus_version") { transitive = false }
-	modRuntimeOnly("dev.itsmeow.betteranimalsplus:betteranimalsplus-fabric:$project.better_animals_plus_version") { transitive = false }
+	optionalMod true, "curse.maven:betteranimalsplus-303557:$project.better_animals_plus_version"
 
-	modCompileOnly("dev.architectury:architectury-fabric:$project.architectury_version") { transitive = false }
-	modRuntimeOnly("dev.architectury:architectury-fabric:$project.architectury_version") { transitive = false }
+	optionalMod true, "dev.architectury:architectury-fabric:$project.architectury_version"
 
 	// speed up launching in dev
-	devRuntime "com.github.astei:lazydfu:$project.lazy_dfu_version"
-//	devRuntime "net.oskarstrom:DashLoader:$project.dashloader_version"
+	devRuntime "maven.modrinth:lazydfu:$project.lazy_dfu_version"
+//	devRuntime "maven.modrinth:dashloader:$project.dashloader_version"
 
 	// remember window size+pos in dev
 	devRuntime "net.dblsaiko:winwonders:$project.winwonders_version"

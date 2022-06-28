@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.chicken_nerf.title": "合理養雞",
+  "text.autoconfig.chicken_nerf.option.minLaidEggs": "最小下蛋",
+  "text.autoconfig.chicken_nerf.option.maxLaidEggs": "最多下蛋",
+  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "雞蛋的生育率",
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Enable translation fetching"
+}

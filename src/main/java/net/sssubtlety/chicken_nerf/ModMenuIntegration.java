@@ -9,7 +9,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.util.Optional;
@@ -21,8 +22,8 @@ import static net.sssubtlety.chicken_nerf.FeatureControl.isConfigLoaded;
 @Environment(EnvType.CLIENT)
 public class ModMenuIntegration implements ModMenuApi {
     public static final String NO_CONFIG_KEY_PREFIX = "text." + NAMESPACE + ".no_config_screen.";
-    private static final TranslatableText NO_CONFIG_SCREEN_TITLE = new TranslatableText(NO_CONFIG_KEY_PREFIX + "title");
-    private static final TranslatableText NO_CONFIG_SCREEN_MESSAGE = new TranslatableText(NO_CONFIG_KEY_PREFIX + "message");
+    private static final MutableText NO_CONFIG_SCREEN_TITLE = Text.translatable(NO_CONFIG_KEY_PREFIX + "title");
+    private static final MutableText NO_CONFIG_SCREEN_MESSAGE = Text.translatable(NO_CONFIG_KEY_PREFIX + "message");
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
@@ -51,7 +52,7 @@ public class ModMenuIntegration implements ModMenuApi {
 
         @SuppressWarnings("ConstantConditions")
         @Override
-        public void onClose() {
+        public void closeScreen() {
             this.client.setScreen(parent);
         }
     }

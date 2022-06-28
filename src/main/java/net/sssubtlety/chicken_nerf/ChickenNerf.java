@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +33,7 @@ public class ChickenNerf {
 		return numEntities;
 	}
 
-	public static int getNumEntitiesToSpawn(Random random) {
+	public static int getNumEntitiesToSpawn(RandomGenerator random) {
 		int numEntities = 0;
 		while(random.nextFloat() < FeatureControl.getEggSuccessChance()) {
 			numEntities++;
@@ -42,7 +43,7 @@ public class ChickenNerf {
 		return numEntities;
 	}
 
-	public static ItemStack getLayedEggStack(Item eggItem, Random random) {
+	public static ItemStack getLayedEggStack(Item eggItem, RandomGenerator random) {
 		return new ItemStack(eggItem, MathHelper.nextInt(random, FeatureControl.getMinLaidEggs(), FeatureControl.getMaxLaidEggs()));
 	}
 

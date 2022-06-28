@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.chicken_nerf.title": "Chicken Nerf Configuration",
+  "text.autoconfig.chicken_nerf.option.minLaidEggs": "Minimum eggs chickens lay",
+  "text.autoconfig.chicken_nerf.option.maxLaidEggs": "Maximum eggs chickens lay",
+  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "Average chickens from one egg",
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Enable translation fetching"
+}

@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.chicken_nerf.title": "Configuración de Chicken Nerf",
+  "text.autoconfig.chicken_nerf.option.minLaidEggs": "Mínimo de huevos que ponen las gallinas",
+  "text.autoconfig.chicken_nerf.option.maxLaidEggs": "Máximo de huevos que ponen las gallinas",
+  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "Promedio de pollos a partir de un huevo",
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Habilitar búsqueda de traducciones"
+}
