@@ -25,7 +25,7 @@
       "${maven_group}.${mod_id}.ClientInit"
     ],
     "preLaunch": [
-      "${maven_group}.${mod_id}.PreLaunch"
+      "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
     ],
     "modmenu": [
       "${maven_group}.${mod_id}.ModMenuIntegration"
