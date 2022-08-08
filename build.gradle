@@ -49,7 +49,9 @@ dependencies {
 	bundledMod "de.guntram.mcmod:crowdin-translate:$project.crowdin_translate_version"
 
 	// Mod integrations
-	optionalMod true, "curse.maven:betteranimalsplus-303557:$project.better_animals_plus_version"
+//	optionalMod true, "curse.maven:betteranimalsplus-303557:$project.better_animals_plus_version"
+
+	modImplementation "curse.maven:betteranimalsplus-303557:$project.better_animals_plus_version"
 
 	optionalMod true, "dev.architectury:architectury-fabric:$project.architectury_version"
 
