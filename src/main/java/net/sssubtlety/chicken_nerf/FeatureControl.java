@@ -38,7 +38,7 @@ public class FeatureControl {
         final Optional<ModContainer> optModContainer = FabricLoader.getInstance().getModContainer("cloth-config");
         if (optModContainer.isPresent()) {
             try {
-                shouldLoadConfig = VersionPredicate.parse(">=6.1.48").test(optModContainer.get().getMetadata().getVersion());
+                shouldLoadConfig = VersionPredicate.parse(">=7.0.72").test(optModContainer.get().getMetadata().getVersion());
             } catch (VersionParsingException e) {
                 e.printStackTrace();
             }
