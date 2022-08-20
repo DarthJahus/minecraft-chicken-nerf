@@ -1,7 +1,7 @@
 {
-  "text.autoconfig.chicken_nerf.title": "Chicken Nerf Configuration",
-  "text.autoconfig.chicken_nerf.option.minLaidEggs": "Minimum eggs chickens lay",
-  "text.autoconfig.chicken_nerf.option.maxLaidEggs": "Maximum eggs chickens lay",
-  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "Average chickens from one egg",
-  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Enable translation fetching"
+  "text.autoconfig.chicken_nerf.title": "Chicken Nerfの設定",
+  "text.autoconfig.chicken_nerf.option.minLaidEggs": "最低限の卵のニワトリを産む",
+  "text.autoconfig.chicken_nerf.option.maxLaidEggs": "最大の卵のニワトリが横たわっています",
+  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "卵一個の鶏の平均",
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "翻訳の取得を有効にする"
 }

@@ -1,7 +1,7 @@
 {
-  "text.autoconfig.chicken_nerf.title": "Chicken Nerf Configuration",
-  "text.autoconfig.chicken_nerf.option.minLaidEggs": "Minimum eggs chickens lay",
-  "text.autoconfig.chicken_nerf.option.maxLaidEggs": "Maximum eggs chickens lay",
-  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "Average chickens from one egg",
-  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Enable translation fetching"
+  "text.autoconfig.chicken_nerf.title": "「Chicken Nerf」配置",
+  "text.autoconfig.chicken_nerf.option.minLaidEggs": "最低产蛋率",
+  "text.autoconfig.chicken_nerf.option.maxLaidEggs": "最高产蛋率",
+  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "一个鸡蛋的平均生育率",
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "启用翻译获取"
 }
