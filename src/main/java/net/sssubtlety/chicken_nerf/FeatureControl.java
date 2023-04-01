@@ -1,10 +1,10 @@
 package net.sssubtlety.chicken_nerf;
 
-import dev.itsmeow.betteranimalsplus.api.ModEventBus;
-import dev.itsmeow.betteranimalsplus.common.entity.EntityGoose;
-import dev.itsmeow.betteranimalsplus.common.entity.EntityPheasant;
-import dev.itsmeow.betteranimalsplus.common.entity.EntityTurkey;
-import dev.itsmeow.betteranimalsplus.init.ModItems;
+//import dev.itsmeow.betteranimalsplus.api.ModEventBus;
+//import dev.itsmeow.betteranimalsplus.common.entity.EntityGoose;
+//import dev.itsmeow.betteranimalsplus.common.entity.EntityPheasant;
+//import dev.itsmeow.betteranimalsplus.common.entity.EntityTurkey;
+//import dev.itsmeow.betteranimalsplus.init.ModItems;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -47,28 +47,28 @@ public class FeatureControl {
         CONFIG_INSTANCE = shouldLoadConfig ?
                 AutoConfig.register(Config.class, GsonConfigSerializer::new).getConfig() : null;
 
-        final Optional<ModContainer> optBAPContainer = FabricLoader.getInstance().getModContainer("betteranimalsplus");
-        if (optBAPContainer.isPresent()) {
-            try {
-                if (VersionPredicate.parse(">=1.19-11.0.6").test(optBAPContainer.get().getMetadata().getVersion())) {
-                    // cancel BAP random egg laying
-                    ModEventBus.LayEggTickEvent.subscribe(event -> event.setCanceled(true));
-                    // ensure BAP eggs always try to spawn babies
-                    ModEventBus.ShouldEggSpawnEntitiesEvent.subscribe(event -> event.setShouldSpawnEntities(true));
-                    // modify the number of baby entities from a BAP egg
-                    ModEventBus.EggThrowSpawnCountEvent.subscribe(event ->
-                            event.setSpawnCount(getNumEntitiesToSpawn(event.getEntity().world.random)));
-
-                    // map BAP egg-layers to their eggs
-                    mapAnimalToEggFxn(EntityGoose.class, (random) -> random.nextInt(128) == 0 ?
-                            ModItems.GOLDEN_GOOSE_EGG.get() : ModItems.GOOSE_EGG.get());
-                    mapAnimalToEggFxn(EntityPheasant.class, (random) -> ModItems.PHEASANT_EGG.get());
-                    mapAnimalToEggFxn(EntityTurkey.class, (random) -> ModItems.TURKEY_EGG.get());
-                }
-            } catch (VersionParsingException e) {
-                e.printStackTrace();
-            }
-        }
+//        final Optional<ModContainer> optBAPContainer = FabricLoader.getInstance().getModContainer("betteranimalsplus");
+//        if (optBAPContainer.isPresent()) {
+//            try {
+//                if (VersionPredicate.parse(">=1.19-11.0.6").test(optBAPContainer.get().getMetadata().getVersion())) {
+//                    // cancel BAP random egg laying
+//                    ModEventBus.LayEggTickEvent.subscribe(event -> event.setCanceled(true));
+//                    // ensure BAP eggs always try to spawn babies
+//                    ModEventBus.ShouldEggSpawnEntitiesEvent.subscribe(event -> event.setShouldSpawnEntities(true));
+//                    // modify the number of baby entities from a BAP egg
+//                    ModEventBus.EggThrowSpawnCountEvent.subscribe(event ->
+//                            event.setSpawnCount(getNumEntitiesToSpawn(event.getEntity().world.random)));
+//
+//                    // map BAP egg-layers to their eggs
+//                    mapAnimalToEggFxn(EntityGoose.class, (random) -> random.nextInt(128) == 0 ?
+//                            ModItems.GOLDEN_GOOSE_EGG.get() : ModItems.GOOSE_EGG.get());
+//                    mapAnimalToEggFxn(EntityPheasant.class, (random) -> ModItems.PHEASANT_EGG.get());
+//                    mapAnimalToEggFxn(EntityTurkey.class, (random) -> ModItems.TURKEY_EGG.get());
+//                }
+//            } catch (VersionParsingException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     public interface Defaults {

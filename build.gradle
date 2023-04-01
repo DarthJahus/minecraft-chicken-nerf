@@ -12,7 +12,7 @@ buildscript {
 }
 
 plugins {
-	id 'fabric-loom' version '0.12-SNAPSHOT'
+	id 'fabric-loom' version '1.0-SNAPSHOT'
 	id 'maven-publish'
 	// Quilt mappings
 	id 'org.quiltmc.quilt-mappings-on-loom' version '4.2.0'
@@ -53,7 +53,7 @@ dependencies {
 
 //	modImplementation "curse.maven:betteranimalsplus-303557:$project.better_animals_plus_version"
 
-//	optionalMod true, "dev.architectury:architectury-fabric:$project.architectury_version"
+	optionalMod true, "dev.architectury:architectury-fabric:$project.architectury_version"
 
 	// speed up launching in dev
 	devRuntime "maven.modrinth:lazydfu:$project.lazy_dfu_version"
