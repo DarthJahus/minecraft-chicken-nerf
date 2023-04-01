@@ -1,7 +1,7 @@
 {
-  "text.autoconfig.chicken_nerf.title": "Chicken Nerf Configuration",
-  "text.autoconfig.chicken_nerf.option.minLaidEggs": "Minimum eggs chickens lay",
-  "text.autoconfig.chicken_nerf.option.maxLaidEggs": "Maximum eggs chickens lay",
-  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "Average chickens from one egg",
-  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Enable translation fetching"
+  "text.autoconfig.chicken_nerf.title": "Конфігурація Chicken Nerf",
+  "text.autoconfig.chicken_nerf.option.minLaidEggs": "Мінімальна кількість яєць, що відкладається куркою",
+  "text.autoconfig.chicken_nerf.option.maxLaidEggs": "Максимальна кількість яєць, що відкладається куркою",
+  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "Середня кількість курчат із одного яйця",
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Включити отримання перекладу"
 }

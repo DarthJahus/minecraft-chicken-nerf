@@ -1,7 +1,7 @@
 - 1.0.17 (31 Mar. 2023):
 
   - Updated for 1.19.3  and 1.19.4
-  - Temporarily romed Better Animals Plus integration as it hasn't been updated
+  - Temporarily removed Better Animals Plus integration as it hasn't been updated
 
 - 1.0.16 (16 Aug. 2022): Marked as compatible with 1.19.2
 - 1.0.15 (29 Jul. 2022):
