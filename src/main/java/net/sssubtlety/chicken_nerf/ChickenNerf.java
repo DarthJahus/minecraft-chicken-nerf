@@ -39,7 +39,6 @@ public class ChickenNerf {
 			numEntities++;
 		}
 
-		LOGGER.error("numEntities: " + numEntities);
 		return numEntities;
 	}
 

@@ -34,10 +34,7 @@ repositories {
 }
 
 dependencies {
-	implementation("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}") { transitive = false }
-	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}") { transitive = false }
-	include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}") { transitive = false }
-
+	include(implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:$project.mixin_extras_version")))
 	// Fabric API
 	dependedMod "net.fabricmc.fabric-api:fabric-api:", "fabric", null, null
 
@@ -53,7 +50,7 @@ dependencies {
 
 //	modImplementation "curse.maven:betteranimalsplus-303557:$project.better_animals_plus_version"
 
-	optionalMod true, "dev.architectury:architectury-fabric:$project.architectury_version"
+//	optionalMod true, "dev.architectury:architectury-fabric:$project.architectury_version"
 
 	// speed up launching in dev
 	devRuntime "maven.modrinth:lazydfu:$project.lazy_dfu_version"
