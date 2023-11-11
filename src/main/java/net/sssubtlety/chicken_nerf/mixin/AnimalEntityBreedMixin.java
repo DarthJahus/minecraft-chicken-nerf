@@ -28,14 +28,14 @@ import static net.sssubtlety.chicken_nerf.ChickenNerf.getLayedEggStack;
 import static net.sssubtlety.chicken_nerf.FeatureControl.getEggForAnimal;
 
 @Mixin(AnimalEntity.class)
-public abstract class AnimalEntityBreedMixin extends PassiveEntity {
-	protected AnimalEntityBreedMixin(EntityType<? extends AnimalEntity> entityType, World world) {
+abstract class AnimalEntityBreedMixin extends PassiveEntity {
+	private AnimalEntityBreedMixin(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
 		throw new IllegalStateException("AnimalEntityBreedMixin's dummy constructor called!");
 	}
 
-	@WrapWithCondition(method = "breed", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnEntityAndPassengers(Lnet/minecraft/entity/Entity;)V"))
-	private boolean chicken_nerf$spawnEggsInsteadOfBabies(ServerWorld world, Entity entity) {
+	@WrapWithCondition(method = "breed(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/passive/AnimalEntity;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;spawnEntityAndPassengers(Lnet/minecraft/entity/Entity;)V"))
+	private boolean spawnEggsInsteadOfBabies(ServerWorld world, Entity entity) {
 		Item eggItem = getEggForAnimal(this.getClass(), this.random);
 		if (eggItem == null) return true;
 		else {

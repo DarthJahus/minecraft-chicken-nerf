@@ -13,14 +13,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(EggEntity.class)
-public abstract class EggEntityChickenChanceMixin extends ThrownItemEntity {
-    public EggEntityChickenChanceMixin(EntityType<? extends ThrownItemEntity> entityType, World world) {
+abstract class EggEntityChickenChanceMixin extends ThrownItemEntity {
+    private EggEntityChickenChanceMixin(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
         throw new IllegalStateException("chicken_nerf: EggEntityChickenChanceMixin's dummy constructor called. ");
     }
 
     @Redirect(method = "onCollision", at = @At(value = "FIELD", opcode = Opcodes.GETFIELD, target = "Lnet/minecraft/world/World;isClient:Z"))
-    boolean chicken_nerf$spawnChickensAndFakeClient(World world) {
+    private boolean spawnChickensAndFakeClient(World world) {
         ChickenNerf.spawnEntities(EntityType.CHICKEN, getX(), getY(), getZ(), getYaw(), world, chicken -> chicken.setBreedingAge(-24000));
 
         this.getWorld().sendEntityStatus(this, (byte)3);

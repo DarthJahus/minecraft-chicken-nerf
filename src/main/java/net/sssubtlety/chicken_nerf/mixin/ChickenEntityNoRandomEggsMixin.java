@@ -8,9 +8,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ChickenEntity.class)
-public class ChickenEntityNoRandomEggsMixin {
+class ChickenEntityNoRandomEggsMixin {
 	@Redirect(method = "tickMovement", at = @At(value = "FIELD", opcode = Opcodes.GETFIELD, target = "Lnet/minecraft/world/World;isClient:Z"))
-	private boolean chicken_nerf$fakeIsClient(World owner) {
+	private boolean fakeIsClient(World owner) {
 		return true;
 	}
 }
