@@ -24,8 +24,8 @@ public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return isConfigLoaded() ?
-                parent -> AutoConfig.getConfigScreen(Config.class, parent).get() :
-                NoConfigScreen::new;
+            parent -> AutoConfig.getConfigScreen(Config.class, parent).get() :
+            NoConfigScreen::new;
     }
 
     public static class NoConfigScreen extends Screen {
@@ -38,7 +38,6 @@ public class ModMenuIntegration implements ModMenuApi {
         @SuppressWarnings("ConstantConditions")
         @Override
         public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-            renderBackground(graphics);
             super.render(graphics, mouseX, mouseY, delta);
             final int windowHCenter = MinecraftClient.getInstance().getWindow().getScaledWidth() / 2;
             final int windowHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();

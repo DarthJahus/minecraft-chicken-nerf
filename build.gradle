@@ -52,10 +52,8 @@ dependencies {
 
 //	optionalMod true, "dev.architectury:architectury-fabric:$project.architectury_version"
 
-	// speed up launching in dev
-	devRuntime "maven.modrinth:lazydfu:$project.lazy_dfu_version"
-//	devRuntime "maven.modrinth:dashloader:$project.dashloader_version"
-
-	// remember window size+pos in dev
+	// dev convenience
 	devRuntime "net.dblsaiko:winwonders:$project.winwonders_version"
+	devRuntime "maven.modrinth:global-options:$project.global_options_version"
+
 }
