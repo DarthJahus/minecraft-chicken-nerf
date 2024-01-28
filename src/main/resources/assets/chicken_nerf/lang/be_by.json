@@ -1,0 +1,7 @@
+{
+  "text.autoconfig.chicken_nerf.title": "Канфігурацыя Chicken Nerf",
+  "text.autoconfig.chicken_nerf.option.minLaidEggs": "Мінімальная колькасць яек, якія адкладаюць куры",
+  "text.autoconfig.chicken_nerf.option.maxLaidEggs": "Максімальная колькасць яек, якія адкладаюць куры",
+  "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "Сярэдняя колькасць куранят з аднаго яйка",
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Уключыць атрыманне перакладу"
+}

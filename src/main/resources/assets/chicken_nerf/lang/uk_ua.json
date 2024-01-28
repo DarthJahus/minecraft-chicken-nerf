@@ -3,5 +3,5 @@
   "text.autoconfig.chicken_nerf.option.minLaidEggs": "Мінімальна кількість яєць, що відкладається куркою",
   "text.autoconfig.chicken_nerf.option.maxLaidEggs": "Максимальна кількість яєць, що відкладається куркою",
   "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "Середня кількість курчат із одного яйця",
-  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Включити отримання перекладу"
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Увімкнути отримання перекладу"
 }
