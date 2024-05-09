@@ -1,7 +1,13 @@
 {
+  "modmenu.nameTranslation.chicken_nerf": "Chicken Nerf",
+  "modmenu.summaryTranslation.chicken_nerf": "No random eggs",
+  "modmenu.descriptionTranslation.chicken_nerf": "Prevents random chicken egg laying. Instead, breeding chickens produces eggs.",
+  "text.chicken_nerf.no_config_screen.title": "Chicken Nerf Config Unavailable",
+  "text.chicken_nerf.no_config_screen.message": "§cInstall Cloth Config to enable configuration.",
   "text.autoconfig.chicken_nerf.title": "Канфігурацыя Chicken Nerf",
   "text.autoconfig.chicken_nerf.option.minLaidEggs": "Мінімальная колькасць яек, якія адкладаюць куры",
   "text.autoconfig.chicken_nerf.option.maxLaidEggs": "Максімальная колькасць яек, якія адкладаюць куры",
   "text.autoconfig.chicken_nerf.option.averageChickensFromEgg": "Сярэдняя колькасць куранят з аднаго яйка",
-  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Уключыць атрыманне перакладу"
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching": "Уключыць атрыманне перакладу",
+  "text.autoconfig.chicken_nerf.option.enableTranslationFetching.@Tooltip": "Download translations from Crowdin when the game launches"
 }
