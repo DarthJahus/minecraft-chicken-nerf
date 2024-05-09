@@ -14,9 +14,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(EggEntity.class)
 abstract class EggEntityChickenChanceMixin extends ThrownItemEntity {
-    private EggEntityChickenChanceMixin(EntityType<? extends ThrownItemEntity> entityType, World world) {
-        super(entityType, world);
-        throw new IllegalStateException("chicken_nerf: EggEntityChickenChanceMixin's dummy constructor called. ");
+    private EggEntityChickenChanceMixin() {
+        //noinspection DataFlowIssue
+        super(null, null);
+        throw new IllegalStateException("chicken_nerf: EggEntityChickenChanceMixin's dummy constructor called.");
     }
 
     @Redirect(method = "onCollision", at = @At(value = "FIELD", opcode = Opcodes.GETFIELD, target = "Lnet/minecraft/world/World;isClient:Z"))

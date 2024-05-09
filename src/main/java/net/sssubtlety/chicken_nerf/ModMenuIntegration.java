@@ -17,9 +17,9 @@ import static net.sssubtlety.chicken_nerf.FeatureControl.isConfigLoaded;
 
 @Environment(EnvType.CLIENT)
 public class ModMenuIntegration implements ModMenuApi {
-    public static final String NO_CONFIG_KEY_PREFIX = "text." + NAMESPACE + ".no_config_screen.";
-    private static final MutableText NO_CONFIG_SCREEN_TITLE = Text.translatable(NO_CONFIG_KEY_PREFIX + "title");
-    private static final MutableText NO_CONFIG_SCREEN_MESSAGE = Text.translatable(NO_CONFIG_KEY_PREFIX + "message");
+    private static final String NO_CONFIG_KEY_PREFIX = "text." + NAMESPACE + ".no_config_screen.";
+    public static final Text NO_CONFIG_SCREEN_TITLE = Text.translatable(NO_CONFIG_KEY_PREFIX + "title");
+    public static final Text NO_CONFIG_SCREEN_MESSAGE = Text.translatable(NO_CONFIG_KEY_PREFIX + "message");
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
