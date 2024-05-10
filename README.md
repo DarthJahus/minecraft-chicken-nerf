@@ -77,7 +77,17 @@ Some entities from these mods will have their breeding behavior changed similarl
     
 </details>
 
-If you'd like to translate Chicken Nerf (there are only a few lines of text), follow [this link](https://crowdin.com/project/chicken-nerf/invite). New translations will be added once approved without the mod needing an update thanks to [CrowdinTranslate](https://github.com/gbl/CrowdinTranslate).
+<br/>
+
+<details>
+
+<summary>Translating</summary>
+
+If you'd like to help translate Chicken Nerf, you can do so on [Crowdin](https://crwd.in/chicken-nerf).
+
+New translations will be added once approved without the mod needing an update thanks to [CrowdinTranslate](https://github.com/gbl/CrowdinTranslate).
+
+</details>
 
 ---
 
