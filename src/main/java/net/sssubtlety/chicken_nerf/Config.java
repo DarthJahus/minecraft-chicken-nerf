@@ -1,9 +1,7 @@
 package net.sssubtlety.chicken_nerf;
 
-import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
 import static net.sssubtlety.chicken_nerf.ChickenNerf.NAMESPACE;
 
@@ -16,9 +14,6 @@ public class Config implements ConfigData {
     public int maxLaidEggs = 3;
 
     public double averageChickensFromEgg = 0.6;
-
-    @ConfigEntry.Gui.Tooltip
-    public boolean enableTranslationFetching = true;
 
     @Override
     public void validatePostLoad() {

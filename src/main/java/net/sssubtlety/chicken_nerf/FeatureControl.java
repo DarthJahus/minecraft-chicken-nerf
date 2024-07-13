@@ -75,7 +75,6 @@ public class FeatureControl {
         int minLaidEggs = 1;
         int maxLaidEggs = 3;
         double averageChickensFromEgg = 0.6;
-        boolean enableTranslationFetching = true;
     }
 
     private static final double defaultEggSuccessChance = Defaults.averageChickensFromEgg / (Defaults.averageChickensFromEgg + 1);
@@ -110,9 +109,5 @@ public class FeatureControl {
     public static double getEggSuccessChance() {
         return  CONFIG_INSTANCE == null ? defaultEggSuccessChance :
                 CONFIG_INSTANCE.averageChickensFromEgg / (CONFIG_INSTANCE.averageChickensFromEgg + 1);
-    }
-
-    public static boolean isTranslationFetchingEnabled() {
-        return CONFIG_INSTANCE == null ? Defaults.enableTranslationFetching : CONFIG_INSTANCE.enableTranslationFetching;
     }
 }
