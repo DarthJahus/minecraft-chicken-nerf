@@ -37,7 +37,7 @@ dependencies {
 	// Config menu support
 	suggestedMod true, "com.terraformersmc:modmenu:", "modmenu"
 	// translation fetching
-	modRuntimeOnly "net.sssubtlety.sss_translate:mod:$sss_translate_version"
+	// modRuntimeOnly "net.sssubtlety.sss_translate:mod:$sss_translate_version"
 
 	// Mod integrations
 //	optionalMod true, "curse.maven:betteranimalsplus-303557:$project.better_animals_plus_version"
