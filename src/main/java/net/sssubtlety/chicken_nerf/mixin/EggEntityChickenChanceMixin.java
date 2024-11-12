@@ -25,12 +25,13 @@ abstract class EggEntityChickenChanceMixin extends ThrownItemEntity {
     private boolean spawnChickensAndFakeClient(World world) {
         ChickenNerf.spawnEntities(
             EntityType.CHICKEN,
-            getX(), getY(), getZ(), getYaw(),
+            this.getX(), this.getY(), this.getZ(), this.getYaw(),
             world, chicken -> chicken.setBreedingAge(-24000)
         );
 
         this.getWorld().sendEntityStatus(this, (byte)3);
         this.discard();
+
         return true;
     }
 }

@@ -8,7 +8,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -41,14 +40,20 @@ public class ModMenuIntegration implements ModMenuApi {
             super.render(graphics, mouseX, mouseY, delta);
             final int windowHCenter = MinecraftClient.getInstance().getWindow().getScaledWidth() / 2;
             final int windowHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();
-            graphics.drawCenteredShadowedText(MinecraftClient.getInstance().textRenderer, NO_CONFIG_SCREEN_TITLE, windowHCenter, windowHeight / 10, Formatting.WHITE.getColorValue());
-            graphics.drawCenteredShadowedText(MinecraftClient.getInstance().textRenderer, NO_CONFIG_SCREEN_MESSAGE, windowHCenter, windowHeight / 2, Formatting.RED.getColorValue());
+            graphics.drawCenteredShadowedText(
+                MinecraftClient.getInstance().textRenderer, NO_CONFIG_SCREEN_TITLE,
+                windowHCenter, windowHeight / 10, Formatting.WHITE.getColorValue()
+            );
+            graphics.drawCenteredShadowedText(
+                MinecraftClient.getInstance().textRenderer, NO_CONFIG_SCREEN_MESSAGE,
+                windowHCenter, windowHeight / 2, Formatting.RED.getColorValue()
+            );
         }
 
         @SuppressWarnings("ConstantConditions")
         @Override
         public void closeScreen() {
-            this.client.setScreen(parent);
+            this.client.setScreen(this.parent);
         }
     }
 }

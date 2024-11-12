@@ -10,42 +10,49 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.VersionParsingException;
+import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.fabricmc.loader.api.metadata.version.VersionPredicate;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.random.RandomGenerator;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
 import java.util.function.Function;
 
-import static net.sssubtlety.chicken_nerf.ChickenNerf.getNumEntitiesToSpawn;
+import static net.sssubtlety.chicken_nerf.ChickenNerf.LOGGER;
 
 public class FeatureControl {
     private static final @Nullable Config CONFIG_INSTANCE;
-    private static final Map<Class<? extends AnimalEntity>, Function<RandomGenerator, ItemConvertible>> ANIMAL2EGG_FXN_MAP = new HashMap<>();
+
+    private static final Map<Class<? extends AnimalEntity>, Function<RandomGenerator, ItemConvertible>>
+        EGG_SELECTORS_BY_ANIMAL = new HashMap<>();
 
     static {
-        mapAnimalToEgg(ChickenEntity.class, Items.EGG);
+        mapAnimalEggItem(ChickenEntity.class, Items.EGG);
 
-        boolean shouldLoadConfig = false;
-        final Optional<ModContainer> optModContainer = FabricLoader.getInstance().getModContainer("cloth-config");
-        if (optModContainer.isPresent()) {
-            try {
-                shouldLoadConfig = VersionPredicate.parse(">=7.0.72").test(optModContainer.get().getMetadata().getVersion());
-            } catch (VersionParsingException e) {
-                e.printStackTrace();
-            }
-        }
+        final boolean shouldLoadConfig = FabricLoader.getInstance().getModContainer("cloth-config")
+            .map(ModContainer::getMetadata)
+            .map(ModMetadata::getVersion)
+            .filter(version -> {
+                try {
+                    return VersionPredicate.parse(">=7.0.72").test(version);
+                } catch (VersionParsingException e) {
+                    LOGGER.error("Failed to parse version predicate", e);
+
+                    return false;
+                }
+            })
+            .isPresent();
 
         CONFIG_INSTANCE = shouldLoadConfig ?
-                AutoConfig.register(Config.class, GsonConfigSerializer::new).getConfig() : null;
+            AutoConfig.register(Config.class, GsonConfigSerializer::new).getConfig() :
+            null;
 
 //        final Optional<ModContainer> optBAPContainer = FabricLoader.getInstance().getModContainer("betteranimalsplus");
 //        if (optBAPContainer.isPresent()) {
@@ -71,27 +78,45 @@ public class FeatureControl {
 //        }
     }
 
-    public interface Defaults {
-        int minLaidEggs = 1;
-        int maxLaidEggs = 3;
-        double averageChickensFromEgg = 0.6;
+    public static int generateEggCount(RandomGenerator random) {
+        final int min, max;
+        if (CONFIG_INSTANCE == null) {
+            min = Defaults.MIN_LAID_EGGS;
+            max = Defaults.MAX_LAID_EGGS;
+        } else {
+            min = CONFIG_INSTANCE.minLaidEggs;
+            max = CONFIG_INSTANCE.maxLaidEggs;
+        }
+
+        return MathHelper.nextInt(random, min, max);
     }
 
-    private static final double defaultEggSuccessChance = Defaults.averageChickensFromEgg / (Defaults.averageChickensFromEgg + 1);
+    public interface Defaults {
+        int MIN_LAID_EGGS = 1;
+        int MAX_LAID_EGGS = 3;
+        double AVERAGE_CHICKENS_FROM_EGG = 0.6;
+    }
+
+    private static final double DEFAULT_EGG_SUCCESS_CHANCE =
+        calculateEggSuccessChance(Defaults.AVERAGE_CHICKENS_FROM_EGG);
 
     public static void init() { }
 
     public static @Nullable Item getEggForAnimal(Class<?> animalClass, RandomGenerator random) {
-        final Function<RandomGenerator, ItemConvertible> eggFxn = ANIMAL2EGG_FXN_MAP.get(animalClass);
+        final Function<RandomGenerator, ItemConvertible> eggFxn = EGG_SELECTORS_BY_ANIMAL.get(animalClass);
         return eggFxn == null ? null : eggFxn.apply(random).asItem();
     }
 
-    public static boolean mapAnimalToEgg(Class<? extends AnimalEntity> animalClass, Item eggItem) {
-        return mapAnimalToEggFxn(animalClass, (random) -> eggItem);
+    @SuppressWarnings("UnusedReturnValue")
+    public static boolean mapAnimalEggItem(Class<? extends AnimalEntity> animalClass, Item eggItem) {
+        return mapAnimalEggSelector(animalClass, (random) -> eggItem);
     }
 
-    public static boolean mapAnimalToEggFxn(Class<? extends AnimalEntity> animalClass, Function<RandomGenerator, ItemConvertible> eggFxn) {
-        return ANIMAL2EGG_FXN_MAP.putIfAbsent(animalClass, eggFxn) == null;
+    public static boolean mapAnimalEggSelector(
+        Class<? extends AnimalEntity> animalClass,
+        Function<RandomGenerator, ItemConvertible> eggSelector
+    ) {
+        return EGG_SELECTORS_BY_ANIMAL.putIfAbsent(animalClass, eggSelector) == null;
     }
 
     public static boolean isConfigLoaded() {
@@ -99,15 +124,19 @@ public class FeatureControl {
     }
 
     public static int getMinLaidEggs() {
-        return CONFIG_INSTANCE == null ? Defaults.minLaidEggs : CONFIG_INSTANCE.minLaidEggs;
+        return CONFIG_INSTANCE == null ? Defaults.MIN_LAID_EGGS : CONFIG_INSTANCE.minLaidEggs;
     }
 
     public static int getMaxLaidEggs() {
-        return CONFIG_INSTANCE == null ? Defaults.maxLaidEggs : CONFIG_INSTANCE.maxLaidEggs;
+        return CONFIG_INSTANCE == null ? Defaults.MAX_LAID_EGGS : CONFIG_INSTANCE.maxLaidEggs;
     }
 
     public static double getEggSuccessChance() {
-        return  CONFIG_INSTANCE == null ? defaultEggSuccessChance :
-                CONFIG_INSTANCE.averageChickensFromEgg / (CONFIG_INSTANCE.averageChickensFromEgg + 1);
+        return  CONFIG_INSTANCE == null ? DEFAULT_EGG_SUCCESS_CHANCE :
+            calculateEggSuccessChance(CONFIG_INSTANCE.averageChickensFromEgg);
+    }
+
+    private static double calculateEggSuccessChance(double averageChickensFromEgg) {
+        return averageChickensFromEgg / (averageChickensFromEgg + 1);
     }
 }
