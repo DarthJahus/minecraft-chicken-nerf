@@ -1,3 +1,4 @@
+- 1.2.0 (11 Nov. 2024): Updated for 1.21.2-1.21.3
 - 1.1.1 (4 Sep. 2024): Marked as compatible with 1.21.1
 - 1.1.0 (12 Jul. 2024):
   - Updated for 1.21!
