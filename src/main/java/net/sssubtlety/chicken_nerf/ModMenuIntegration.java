@@ -17,6 +17,7 @@ import static net.sssubtlety.chicken_nerf.FeatureControl.isConfigLoaded;
 @Environment(EnvType.CLIENT)
 public class ModMenuIntegration implements ModMenuApi {
     private static final String NO_CONFIG_KEY_PREFIX = "text." + NAMESPACE + ".no_config_screen.";
+
     public static final Text NO_CONFIG_SCREEN_TITLE = Text.translatable(NO_CONFIG_KEY_PREFIX + "title");
     public static final Text NO_CONFIG_SCREEN_MESSAGE = Text.translatable(NO_CONFIG_KEY_PREFIX + "message");
 
@@ -28,13 +29,19 @@ public class ModMenuIntegration implements ModMenuApi {
     }
 
     public static class NoConfigScreen extends Screen {
+        // WHITE's color is non-null
+        @SuppressWarnings("DataFlowIssue")
+        private static final int TITLE_COLOR = Formatting.WHITE.getColorValue();
+        // RED's color is non-null
+        @SuppressWarnings("DataFlowIssue")
+        private static final int MESSAGE_COLOR = Formatting.RED.getColorValue();
+
         private final Screen parent;
         protected NoConfigScreen(Screen parent) {
             super(NO_CONFIG_SCREEN_TITLE);
             this.parent = parent;
         }
 
-        @SuppressWarnings("ConstantConditions")
         @Override
         public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
             super.render(graphics, mouseX, mouseY, delta);
@@ -42,11 +49,13 @@ public class ModMenuIntegration implements ModMenuApi {
             final int windowHeight = MinecraftClient.getInstance().getWindow().getScaledHeight();
             graphics.drawCenteredShadowedText(
                 MinecraftClient.getInstance().textRenderer, NO_CONFIG_SCREEN_TITLE,
-                windowHCenter, windowHeight / 10, Formatting.WHITE.getColorValue()
+                windowHCenter, windowHeight / 10,
+                TITLE_COLOR
             );
             graphics.drawCenteredShadowedText(
                 MinecraftClient.getInstance().textRenderer, NO_CONFIG_SCREEN_MESSAGE,
-                windowHCenter, windowHeight / 2, Formatting.RED.getColorValue()
+                windowHCenter, windowHeight / 2,
+                MESSAGE_COLOR
             );
         }
 
