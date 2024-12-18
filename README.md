@@ -38,7 +38,7 @@ Ever think "Chicken farms are too easy...", or "Getting food in Minecraft isn't 
 Well, this mod can help you with that.
 
 Chickens will no longer randomly lay eggs.  
-Instead, when you breed two chicken (with seed like in vanilla), they will produce a random number of eggs.  
+Instead, when you breed two chicken (with seeds like in vanilla), they will produce a random number of eggs.  
 This has several advantages:
 - it makes more sense
 - it makes chicken farms less trivial
