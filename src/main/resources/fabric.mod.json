@@ -33,9 +33,6 @@
   "entrypoints": {
     "main": [
       "${maven_group}.${mod_id}.Init"
-    ],
-    "modmenu": [
-      "${maven_group}.${mod_id}.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -48,8 +45,6 @@
     "minecraft": ">=${min_minecraft_version} <=${minecraft_version}"
   },
   "suggests": {
-    "cloth-config": ">=${min_cloth_config_version}",
-    "modmenu": ">=${min_modmenu_version}",
-    "sss_translate": "*"
+    "cloth-config": ">=${min_cloth_config_version}"
   }
 }
