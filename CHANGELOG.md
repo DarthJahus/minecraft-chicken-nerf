@@ -1,3 +1,4 @@
+- 1.2.1-chance (18 Aug. 2026): Change egg spawning to a single success chance; remove many dependencies (@darthjahus)
 - 1.2.1 (17 Dec. 2024): Marked as compatible with 1.21.4
 - 1.2.0 (11 Nov. 2024): Updated for 1.21.2-1.21.3
 - 1.1.1 (4 Sep. 2024): Marked as compatible with 1.21.1

@@ -1,50 +1,28 @@
-//file:noinspection GroovyAssignabilityCheck
 plugins {
 	id 'fabric-loom' version '1.7-SNAPSHOT'
 	id 'maven-publish'
-	// Quilt mappings
 	id 'org.quiltmc.quilt-mappings-on-loom' version '4.2.3'
-    id 'net.sssubtlety.sss_translate.sss-translate' version "$sss_translate_version"
 }
 
 apply from: "https://gitlab.com/supersaiyansubtlety/mod_gradle_scripts/-/raw/$project.mod_gradle_scripts_ref/applyAll.gradle"
 
-sssTranslate {
-	crowdinProjectName = project.ext.archives_base_name
-	minecraftProjectName = project.ext.mod_id
-}
-
 repositories {
-	maven {
-		url = "https://maven.itsmeow.dev/"
-	}
-	maven {
-		name = "Ladysnake Mods"
-		url = 'https://ladysnake.jfrog.io/artifactory/mods'
-	}
-	maven {
-		name = 'sss_translate_maven'
-		url = 'https://gitlab.com/api/v4/projects/59105494/packages/maven'
-	}
+    maven {
+        url = "https://maven.itsmeow.dev/"
+    }
+
+    maven {
+        name = "Knifepoint (dblsaiko)"
+        url = "https://maven.knifepoint.net/"
+    }
 }
 
 dependencies {
 	// Fabric API
 	dependedMod "net.fabricmc.fabric-api:fabric-api:", "fabric", null, null
 
-	//Config library
+	// Config library (nécessaire pour que AutoConfig fonctionne)
 	suggestedMod true, "me.shedaniel.cloth:cloth-config-fabric:", "cloth_config"
-	// Config menu support
-	suggestedMod true, "com.terraformersmc:modmenu:", "modmenu"
-	// translation fetching
-	// modRuntimeOnly "net.sssubtlety.sss_translate:mod:$sss_translate_version"
-
-	// Mod integrations
-//	optionalMod true, "curse.maven:betteranimalsplus-303557:$project.better_animals_plus_version"
-
-//	modImplementation "curse.maven:betteranimalsplus-303557:$project.better_animals_plus_version"
-
-//	optionalMod true, "dev.architectury:architectury-fabric:$project.architectury_version"
 
 	// dev convenience
 	devRuntime "net.dblsaiko:winwonders:$project.winwonders_version"

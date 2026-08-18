@@ -35,11 +35,6 @@ public class ChickenNerf {
 	}
 
 	public static int generateEntitySpawnCount(RandomGenerator random) {
-		int count = 0;
-		while(random.nextFloat() < FeatureControl.getEggSuccessChance()) {
-			count++;
-		}
-
-		return count;
+		return random.nextFloat() < FeatureControl.getEggSuccessChance() ? 1 : 0;
 	}
 }
