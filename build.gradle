@@ -1,30 +1,48 @@
 plugins {
-	id 'fabric-loom' version '1.7-SNAPSHOT'
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
-	id 'org.quiltmc.quilt-mappings-on-loom' version '4.2.3'
 }
 
-apply from: "https://gitlab.com/supersaiyansubtlety/mod_gradle_scripts/-/raw/$project.mod_gradle_scripts_ref/applyAll.gradle"
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
 
 repositories {
-    maven {
-        url = "https://maven.itsmeow.dev/"
-    }
-
-    maven {
-        name = "Knifepoint (dblsaiko)"
-        url = "https://maven.knifepoint.net/"
-    }
+	// Loom adds essential repos; only add extras when needed
 }
 
 dependencies {
-	// Fabric API
-	dependedMod "net.fabricmc.fabric-api:fabric-api:", "fabric", null, null
+	// To change the versions see the gradle.properties file
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	// 26.1+ is unobfuscated — do NOT call loom.officialMojangMappings()
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+}
 
-	// Config library (nécessaire pour que AutoConfig fonctionne)
-	suggestedMod true, "me.shedaniel.cloth:cloth-config-fabric:", "cloth_config"
+processResources {
+	def version = project.version
+	inputs.property "version", version
 
-	// dev convenience
-	devRuntime "net.dblsaiko:winwonders:$project.winwonders_version"
-	devRuntime "maven.modrinth:global-options:$project.global_options_version"
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+}
+
+java {
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_${project.base.archivesName.get()}" }
+	}
 }
